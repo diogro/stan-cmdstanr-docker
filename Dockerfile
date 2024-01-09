@@ -53,9 +53,9 @@ ENV BAYES_R_PACKAGES="\
     bbmle \
     lme4 \
     lmerTest \
-    pak" 
+    pak \
+    sads" 
 
 RUN install2.r --error --skipinstalled $BAYES_R_PACKAGES
 
 RUN Rscript -e 'remotes::install_github("rmcelreath/rethinking")' 
-RUN Rscript -e 'options(repos = "https://cran.r-project.org/"); update.packages(ask = FALSE)' 
