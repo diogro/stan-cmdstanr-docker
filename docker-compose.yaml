@@ -11,7 +11,7 @@ services:
       USER: $R_STUDIO_USER
       PASSWORD: $R_STUDIO_PASSWORD
       ROOT: "TRUE"
-      DISABLE_AUTH: "TRUE"
+      DISABLE_AUTH: "FALSE"
       R_SEED: $R_SEED
     build: 
       args:
