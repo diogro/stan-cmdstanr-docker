@@ -39,13 +39,23 @@ RUN Rscript -e 'install.packages("cmdstanr", repos = c("https://mc-stan.org/r-pa
  
 RUN install2.r --error --skipinstalled rstanarm
 
+RUN Rscript -e 'options(repos = "https://cran.r-project.org/"); install.packages("Matrix"); install.packages("lme4")'
+
 ENV BAYES_R_PACKAGES="\
     brms \
     tidybayes \
     bayesplot \
-    Matrix \
     projpred \
-    loo \ 
-" 
+    loo \
+    coda \
+    mvtnorm \
+    remotes \ 
+    bbmle \
+    lme4 \
+    lmerTest \
+    pak" 
 
 RUN install2.r --error --skipinstalled $BAYES_R_PACKAGES
+
+RUN Rscript -e 'remotes::install_github("rmcelreath/rethinking")' 
+RUN Rscript -e 'options(repos = "https://cran.r-project.org/"); update.packages(ask = FALSE)' 
